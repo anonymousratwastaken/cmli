@@ -1,4 +1,4 @@
-
+const kv = await Deno.openKv("kv/db.sqlite3")
 export default function Home() {
   return (
     <div class="px-4 py-8 flex min-h-screen mx-auto flex-col justify-center bg-bg">
