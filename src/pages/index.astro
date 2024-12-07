@@ -1,0 +1,12 @@
+---
+import Page from "@/layouts/Page.astro";
+import SearchBox from "@/components/SearchBox.astro";
+import Navbar from "@/components/Navbar.astro";
+const apiKey = await process.env.ORAMA_API_KEY;
+const endpoint = await process.env.ORAMA_ENDPOINT;
+---
+
+<Page title="Home">
+            <h1 class="text-4xl mb-4 dark:text-main">Welcome to CMLI</h1>
+            <SearchBox />
+</Page>
