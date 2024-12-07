@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn {
+    @apply bg-primary border-2 p-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark active:translate-x-boxShadowX active:translate-y-boxShadowY active:shadow-none dark:active:shadow-none;
+}
