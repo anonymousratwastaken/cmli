@@ -1,0 +1,7 @@
+---
+if (Astro.request.method === "POST") {
+    const data = await Astro.request.formData();
+    const query = data.get("query");
+    return Astro.redirect(`/search/${query}`);
+}
+---

@@ -1,0 +1,17 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem
+  }
+}
+
+.input {
+  @apply col-span-3 rounded-base bg-white dark:bg-secondaryBlack border-2 border-border dark:border-darkBorder p-[10px] font-base ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 outline-none;
+}
+
+.lyrics > p > strong, .lyrics > p > b, .lyrics > strong, .lyrics > b {
+  @apply font-bold dark:text-main;
+}
