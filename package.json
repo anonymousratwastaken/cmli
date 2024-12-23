@@ -13,6 +13,7 @@
     "@astrojs/mdx": "^4.0.1",
     "@astrojs/react": "^3.6.3",
     "@astrojs/tailwind": "^5.1.2",
+    "@astrojs/vercel": "^8.0.1",
     "@deno/astro-adapter": "^0.1.5",
     "@hookform/resolvers": "^3.9.1",
     "@orama/plugin-astro": "^3.0.2",
