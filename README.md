@@ -22,3 +22,5 @@ The database is structured using JSON:
     "uuid": string
 }]
 ```
+
+The main MDX file for lyrics is then stored as `[uuid].mdx` in the `/pages/song/` folder.
