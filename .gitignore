@@ -24,4 +24,5 @@ pnpm-debug.log*
 .idea/
 
 # songs whoops
-./pages/song/
+src/pages/song/
+/src/pages/song
