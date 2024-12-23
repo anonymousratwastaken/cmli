@@ -4,13 +4,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
@@ -24,7 +17,7 @@ const Dropdown: React.FC<Props> = ({ yt, spotify, itunes }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="noShadow" className="max-w-24">
+        <Button variant="ghost" className="max-w-24">
           Listen
         </Button>
       </DropdownMenuTrigger>
