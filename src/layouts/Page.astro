@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import '../styles/globals.css'; 
 const { title, searchBox, nav, kbd } = Astro.props;
 ---
 
@@ -27,8 +28,6 @@ const { title, searchBox, nav, kbd } = Astro.props;
 <meta property="twitter:title" content="CMLI" />
 <meta property="twitter:description" content="A database for Christian music lyrics. Fast, easy to use, keyboard-accessible, and simple." />
 <meta property="twitter:image" content="/meta_banner.png" />
-
-    <link rel="stylesheet" href="/src/styles/globals.css" />
     <title>{title}</title>
   </head>
   <body class="bg-background min-h-dvh min-w-full font-mono text-foreground">
