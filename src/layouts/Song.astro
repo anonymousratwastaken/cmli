@@ -1,51 +1,70 @@
 ---
 import "@/styles/globals.css";
 const { frontmatter } = Astro.props;
-import Navbar from "../components/Navbar.astro";
+import NavbarWithSearch from "../components/NavbarWithSearch.astro";
+import Dropdown from "@/components/ui/listen-button.tsx";
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
-            rel="stylesheet"
-        />
-        <link href="https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@100..900&display=swap" rel="stylesheet">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
 
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{frontmatter.title + " - CMLI"}</title>
-    </head>
-    <body
-        class="dark:bg-darkBg min-w-full bg-bg dark:text-darkText text-text"
-    >
-        <main class="min-h-dvh min-w-full">
-            <Navbar />
-            <div class="flex flex-col gap-3 p-3">
-                <div class="grid grid-cols-2">
-                    <div class="flex flex-col justify-center  justify-items-center items-start">
-                        <h1 class="text-4xl flex font-peta font-bold tracking-tighter dark:text-main">
-                            {frontmatter.title}
-                        </h1>
-                        <h2 class="text-2xl flex font-bold">
-                            {frontmatter.artist}
-                        </h2>
-                    </div>
-                    <img
-                        src={frontmatter.img}
-                        alt={frontmatter.title}
-                        class="rounded-sm justify-self-end border-border border-2 mr-0 max-h-48"
-                    />
-                </div>
-                <article class="lyrics">
-                <slot />
-                </article>
-            </div>
-        </main>
-    </body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{frontmatter.title + " - CMLI"}</title>
+  </head>
+  <body class="bg-background min-h-dvh min-w-full font-mono text-foreground">
+    <main class="min-h-dvh min-w-full">
+      <NavbarWithSearch />
+      <div class="flex flex-col gap-3 p-3">
+        <div class="grid grid-cols-2">
+          <div
+            class="flex flex-col justify-center justify-items-center items-start"
+          >
+            <h1
+              class="text-4xl flex font-varWidth text-primary font-wide font-bold tracking-tighter dark:text-main"
+            >
+              {frontmatter.title}
+            </h1>
+            <h2 class="text-2xl flex font-bold">
+              {frontmatter.artist}
+            </h2>
+            <div class="flex font-bold"></div>
+          </div>
+          <div class="text-end gap-3">
+            <img
+              src={frontmatter.img}
+              alt={frontmatter.title}
+              class="rounded-sm mb-3 justify-self-end h-auto border-border border-2 mr-0 max-h-48"
+            />
+            <Dropdown
+              spotify={frontmatter.links.spotify}
+              yt={frontmatter.links.ytmusic}
+              itunes={frontmatter.links.itunes}
+              client:load
+            />
+          </div>
+        </div>
+        <article class="lyrics">
+          <slot />
+        </article>
+      </div>
+    </main>
+  </body>
 </html>
+
+<script>
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      history.back();
+    }
+  });
+</script>

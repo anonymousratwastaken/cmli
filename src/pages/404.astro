@@ -1,0 +1,17 @@
+---
+import Page from "@/layouts/Page.astro";
+import { Button, buttonVariants } from "@/components/ui/button";
+
+---
+
+<Page title="404">
+    <div class="flex flex-col gap-3 p-5 text-center justify-center content-center items-center">
+    <p>404</p>
+    <h1 class="text-4xl font-bold dark:text-main">We're having trouble finding this one.</h1>
+    <p>But that's OK. Most likely scenario: you made a typo, or followed a link to something that's no longer here.</p>
+    <div class="flex gap-3">
+<button class={buttonVariants({ variant: "default" })} onclick="history.back()">Go back</button>
+    <a href="/" class={buttonVariants({ variant: "secondary" })}>Home</a>
+    </div>
+</div>
+</Page>
