@@ -14,7 +14,6 @@ const client = new OramaClient({
   endpoint: import.meta.env.ORAMA_ENDPOINT,
   api_key: import.meta.env.ORAMA_API_KEY,
 });
-
 const result = await client.search({
   term: query,
   mode: "fulltext",
@@ -86,7 +85,7 @@ const result = await client.search({
           </CardHeader>
           <CardFooter className="flex flex-row items-end content-between">
             <p class="dark:text-darkText">{hit.document.copyright}</p>
-            <a class={buttonVariants({variant: "default"}) + "self-end ml-auto"} href={`/song/${hit.document.uuid}`}>
+            <a class="bg-primary text-primary-foreground hover:bg-primary/90 self-end ml-auto" href={`/song/${hit.document.uuid}`}>
               View
               </a>
           </CardFooter>
