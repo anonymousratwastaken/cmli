@@ -4,6 +4,7 @@ CMLI is a Christian music lyric database using Astro, Bun and Deno. Bun is used 
 
 ## Getting Started
 
+I would recommend forking the repository private and then adding your content there.
 CMLI uses Orama Cloud as its search engine. Sign up for Orama Cloud and then add these environment variables:
 
 ```
