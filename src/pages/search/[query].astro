@@ -1,5 +1,6 @@
 ---
 import Page from "@/layouts/Page.astro";
+import "@std/dotenv/load";
 const { query } = Astro.params;
 import SearchBox from "@/components/SearchBox.astro";
 import {
@@ -11,8 +12,8 @@ import {
 } from "@/components/ui/card";
 import { OramaClient } from "@oramacloud/client";
 const client = new OramaClient({
-  endpoint: import.meta.env.ORAMA_ENDPOINT,
-  api_key: import.meta.env.ORAMA_API_KEY,
+  endpoint: Deno.env.get("ORAMA_ENDPOINT"),
+  api_key: Deno.env.get("ORAMA_API_KEY"),
 });
 const result = await client.search({
   term: query,

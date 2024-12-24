@@ -1,7 +1,7 @@
 {
     "nodeModulesDir": "auto",
     "imports": {
-        "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+        "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
         "drizzle-orm": "npm:drizzle-orm@^0.36.4"
     },
     "compilerOptions": {
