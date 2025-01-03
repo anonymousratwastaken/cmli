@@ -1,6 +1,5 @@
 ---
 import Page from "@/layouts/Page.astro";
-import "@std/dotenv/load";
 const { query } = Astro.params;
 import { buttonVariants } from "@/components/ui/button";
 import SearchBox from "@/components/SearchBox.astro";
@@ -87,7 +86,7 @@ const result = await client.search({
           </CardHeader>
           <CardFooter className="flex flex-row items-end content-between">
             <p class="dark:text-darkText">{hit.document.copyright}</p>
-            <a class={buttonVariants("default") + " self-end ml-auto"} href={`/song/${hit.document.uuid}`}>
+            <a class={buttonVariants({ variant: "default" }) + " self-end ml-auto"} href={`/song/${hit.document.uuid}`}>
               View
               </a>
           </CardFooter>
