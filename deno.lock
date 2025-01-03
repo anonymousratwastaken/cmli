@@ -31,6 +31,7 @@
     "npm:dotenv@^16.4.7": "16.4.7",
     "npm:drizzle-kit@~0.28.1": "0.28.1_esbuild@0.19.12",
     "npm:drizzle-orm@~0.36.4": "0.36.4_@types+react@18.3.12_postgres@3.4.5_react@18.3.1",
+    "npm:es-module-lexer@^1.6.0": "1.6.0",
     "npm:lucide-react@0.468": "0.468.0_react@18.3.1",
     "npm:postgres@^3.4.5": "3.4.5",
     "npm:react-dom@^18.3.1": "18.3.1_react@18.3.1",
@@ -202,7 +203,7 @@
         "@mdx-js/mdx",
         "acorn",
         "astro@5.1.1_typescript@5.7.2_@types+node@22.5.4_tsx@4.19.2_vite@6.0.5__@types+node@22.5.4__tsx@4.19.2_zod@3.24.1",
-        "es-module-lexer",
+        "es-module-lexer@1.5.4",
         "estree-util-visit",
         "hast-util-to-html@9.0.3",
         "kleur@4.1.5",
@@ -2168,7 +2169,7 @@
         "debug",
         "devalue@4.3.3",
         "diff",
-        "es-module-lexer",
+        "es-module-lexer@1.5.4",
         "esbuild@0.17.19",
         "estree-walker@3.0.0",
         "execa@6.1.0",
@@ -2233,7 +2234,7 @@
         "diff",
         "dlv",
         "dset",
-        "es-module-lexer",
+        "es-module-lexer@1.5.4",
         "esbuild@0.21.5",
         "estree-walker@3.0.3",
         "fast-glob",
@@ -2297,7 +2298,7 @@
         "diff",
         "dlv",
         "dset",
-        "es-module-lexer",
+        "es-module-lexer@1.5.4",
         "esbuild@0.21.5",
         "estree-walker@3.0.3",
         "fast-glob",
@@ -2837,6 +2838,9 @@
     },
     "es-module-lexer@1.5.4": {
       "integrity": "sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw=="
+    },
+    "es-module-lexer@1.6.0": {
+      "integrity": "sha512-qqnD1yMU6tk/jnaMosogGySTZP8YtUgAffA9nMN+E/rjxcfRQ6IEk7IiozUjgxKoFHBGjTLnrHB/YC45r/59EQ=="
     },
     "esast-util-from-estree@2.0.0": {
       "integrity": "sha512-4CyanoAudUSBAn5K13H4JhsMH6L9ZP7XbLVe/dKybkxMO7eDyLsT8UHl9TRNrU2Gr9nz+FovfSIjuXWJ81uVwQ==",
@@ -6959,6 +6963,7 @@
         "npm:dotenv@^16.4.7",
         "npm:drizzle-kit@~0.28.1",
         "npm:drizzle-orm@~0.36.4",
+        "npm:es-module-lexer@^1.6.0",
         "npm:lucide-react@0.468",
         "npm:postgres@^3.4.5",
         "npm:react-dom@^18.3.1",
