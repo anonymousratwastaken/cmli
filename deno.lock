@@ -33,6 +33,7 @@
     "npm:drizzle-kit@~0.28.1": "0.28.1_esbuild@0.19.12",
     "npm:drizzle-orm@~0.36.4": "0.36.4_@types+react@18.3.12_postgres@3.4.5_react@18.3.1",
     "npm:es-module-lexer@^1.6.0": "1.6.0",
+    "npm:html-escaper@^3.0.3": "3.0.3",
     "npm:kleur@^4.1.5": "4.1.5",
     "npm:lucide-react@0.468": "0.468.0_react@18.3.1",
     "npm:postgres@^3.4.5": "3.4.5",
