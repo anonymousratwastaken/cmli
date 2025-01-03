@@ -28,10 +28,12 @@
     "npm:astro@^5.1.1": "5.1.1_typescript@5.7.2_@types+node@22.5.4_tsx@4.19.2_vite@6.0.5__@types+node@22.5.4__tsx@4.19.2_zod@3.24.1",
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@^2.1.1": "2.1.1",
+    "npm:cookie@^1.0.2": "1.0.2",
     "npm:dotenv@^16.4.7": "16.4.7",
     "npm:drizzle-kit@~0.28.1": "0.28.1_esbuild@0.19.12",
     "npm:drizzle-orm@~0.36.4": "0.36.4_@types+react@18.3.12_postgres@3.4.5_react@18.3.1",
     "npm:es-module-lexer@^1.6.0": "1.6.0",
+    "npm:kleur@^4.1.5": "4.1.5",
     "npm:lucide-react@0.468": "0.468.0_react@18.3.1",
     "npm:postgres@^3.4.5": "3.4.5",
     "npm:react-dom@^18.3.1": "18.3.1_react@18.3.1",
@@ -2643,6 +2645,9 @@
     },
     "cookie@0.7.2": {
       "integrity": "sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w=="
+    },
+    "cookie@1.0.2": {
+      "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA=="
     },
     "core-js@2.6.12": {
       "integrity": "sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ=="
