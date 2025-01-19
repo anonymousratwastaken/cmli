@@ -25,3 +25,7 @@ The database is structured using JSON:
 ```
 
 The main MDX file for lyrics is then stored as `[uuid].mdx` in the `/pages/song/` folder.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=anonymousratwastaken/cmli&type=Date)](https://star-history.com/#anonymousratwastaken/cmli&Date)
