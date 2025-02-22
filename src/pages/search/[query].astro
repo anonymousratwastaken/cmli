@@ -1,24 +1,50 @@
 ---
-import Page from "@/layouts/Page.astro";
-const { query } = Astro.params;
-import { buttonVariants } from "@/components/ui/button";
-import SearchBox from "@/components/SearchBox.astro";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
-import { OramaClient } from "@oramacloud/client";
-const client = new OramaClient({
-  endpoint: Deno.env.get("ORAMA_ENDPOINT"),
-  api_key: Deno.env.get("ORAMA_API_KEY"),
-});
-const result = await client.search({
-  term: query,
-  mode: "fulltext",
-});
+import { ContentCollectionTypeMismatchError } from 'node_modules/astro/dist/core/errors/errors-data';
+import Page from '../../layouts/Page.astro';
+import SearchBox from '../../components/SearchBox.astro';
+import { buttonVariants } from '../../components/ui/button.tsx';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card.tsx';
+const mysql = await import('mysql2/promise');
+const query = Astro.params.query;
+const HOST = Deno.env.get("SQL_HOST");
+const PASSWORD = Deno.env.get("SQL_PASSWORD");
+const USER = Deno.env.get("SQL_USER");
+const DATABASE = Deno.env.get("SQL_DB");
+const PORT = Deno.env.get("SQL_PORT");
+
+async function main() {
+    let singleStoreConnection;
+    let result;
+    try {
+        singleStoreConnection = await mysql.createConnection({
+            host: HOST,
+            user: USER,
+            port: PORT,
+            password: PASSWORD,
+            database: DATABASE,
+            ssl: {}
+        });
+  
+        console.log("You have successfully connected to SingleStore.");
+        
+        [result] = await singleStoreConnection.query(
+            `SELECT * FROM cmli WHERE name LIKE ? OR artist LIKE ? OR lyrics LIKE ?`,
+            [`%${query}%`, `%${query}%`, `%${query}%`]
+        );
+    } catch (err) { 
+        console.error('ERROR', err);
+        process.exit(1);
+    } finally {
+        if (singleStoreConnection) {
+            await singleStoreConnection.end();
+        }
+    }
+    return result;
+}
+
+const result = await main();
+console.log(result)
+
 ---
 
 <Page title={"Searched for '" + query + "'"} searchBox={false} kbd="disable">
@@ -60,39 +86,39 @@ const result = await client.search({
         id="path5"></path>
     </svg>
     <SearchBox value={query} />
-    {result && result.hits && (
+    {result && (
       <p>
-        found {result.hits.length === 0 ? "no" : result.hits.length}
-        {result.hits.length === 1 ? "result" : "results"}
+        found {result.length === 0 ? "no" : result.length}
+        {result.length === 1 ? "result" : "results"}
       </p>
     )}
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 p-3 gap-3 col-span-4">
-    {result && result.hits && (
-      result.hits.map((hit) => (
+    {result && (
+      result.map((hit) => (
         <Card>
           <CardHeader className="flex flex-row">
             <img
-              src={hit.document.img}
-              alt={hit.document.name}
+              src={hit.img}
+              alt={hit.name}
               class="m-2 mr-0 max-h-24 "
             />
 
             <div class="p-3 flex flex-col">
-              <CardTitle>{hit.document.name}</CardTitle>
-              <CardDescription>{hit.document.artist}</CardDescription>
+              <CardTitle>{hit.name}</CardTitle>
+              <CardDescription>{hit.artist}</CardDescription>
             </div>
           </CardHeader>
           <CardFooter className="flex flex-row items-end content-between">
-            <p class="dark:text-darkText">{hit.document.copyright}</p>
-            <a class={buttonVariants({ variant: "default" }) + " self-end ml-auto"} href={`/song/${hit.document.uuid}`}>
+            <p class="dark:text-darkText">{hit.copyright}</p>
+            <a class={buttonVariants({ variant: "default" }) + " self-end ml-auto"} href={`/song/${hit.uuid}`}>
               View
               </a>
           </CardFooter>
         </Card>
-      )))
-    }
+      ))
+    )}
   </div>
 </Page>
 
