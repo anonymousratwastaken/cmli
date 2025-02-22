@@ -1,5 +1,4 @@
 ---
-import { ContentCollectionTypeMismatchError } from 'node_modules/astro/dist/core/errors/errors-data';
 import Page from '../../layouts/Page.astro';
 import SearchBox from '../../components/SearchBox.astro';
 import { buttonVariants } from '../../components/ui/button.tsx';
@@ -96,7 +95,7 @@ console.log(result)
 
   <div class="grid grid-cols-1 md:grid-cols-2 p-3 gap-3 col-span-4">
     {result && (
-      result.map((hit) => (
+      result.map((hit: { name: string; artist: string; lyrics: string; copyright: string; musicbrainz: string; img: string; uuid: string }) => (
         <Card>
           <CardHeader className="flex flex-row">
             <img
