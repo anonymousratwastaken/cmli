@@ -4,13 +4,14 @@ import { Button } from "./ui/button";
 const { value } = Astro.props
 ---
 
-<form class={"grid max-w-80 grid-cols-4 input border-r-0"} method="POST" action="/search/">
+<form class={"grid max-w-80 grid-cols-4"} method="POST" action="/search/">
     <input
     id="searchBox"
         type="text"
         placeholder="Search"
         name="query"
         value={value}
+        class="input border-r-0"
     >
     <Button className="min-h-full" type="submit">Go</Button>
 </input>
