@@ -6,20 +6,35 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../../
 const query: string = Astro.params.query ?? '';
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/singlestore';
-import { eq } from 'drizzle-orm';
+import { eq, like } from 'drizzle-orm';
 import { cmli } from '../../../drizzle/schema';
-const db = drizzle(Deno.env.get('DATABASE_URL'));
-const result = await db.select({
-  name: cmli.name,
-  artist: cmli.artist,
-  lyrics: cmli.lyrics,
-  copyright: cmli.copyright,
-  musicbrainz: cmli.musicbrainz,
-  img: cmli.img,
-  uuid: cmli.uuid
-}).from(cmli).where(eq(cmli.name, query)).execute();
 
-console.log(result);
+let result = [];
+let error = null;
+
+try {
+  const db = drizzle(Deno.env.get('DATABASE_URL'));
+  
+  // Try a more flexible search with LIKE
+  result = await db.select({
+    name: cmli.name,
+    artist: cmli.artist,
+    lyrics: cmli.lyrics,
+    copyright: cmli.copyright,
+    musicbrainz: cmli.musicbrainz,
+    img: cmli.img,
+    uuid: cmli.uuid
+  })
+  .from(cmli)
+  .where(like(cmli.name, `%${query}%`))
+  .execute();
+
+  console.log('Query:', query);
+  console.log('Results:', result);
+} catch (e) {
+  console.error('Database error:', e);
+  error = e;
+}
 ---
 
 <Page title={"Searched for '" + query + "'"} searchBox={false} kbd="disable">
@@ -61,39 +76,41 @@ console.log(result);
         id="path5"></path>
     </svg>
     <SearchBox value={query} />
-    {result && (
+    {error ? (
+      <p class="text-red-500">Error searching database: {error.message}</p>
+    ) : (
       <p>
         found {result.length === 0 ? "no" : result.length}
-        {result.length === 1 ? "result" : "results"}
+        {result.length === 1 ? " result" : " results"}
       </p>
     )}
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 p-3 gap-3 col-span-4">
-    {result && (
-      result.map((hit: { name: string; artist: string; lyrics: string; copyright: string; musicbrainz: string; img: string; uuid: string }) => (
-        <Card>
-          <CardHeader className="flex flex-row">
-            <img
-              src={hit.img}
-              alt={hit.name}
-              class="m-2 mr-0 max-h-24 "
-            />
-
-            <div class="p-3 flex flex-col">
-              <CardTitle>{hit.name}</CardTitle>
-              <CardDescription>{hit.artist}</CardDescription>
-            </div>
-          </CardHeader>
-          <CardFooter className="flex flex-row items-end content-between">
-            <p class="dark:text-darkText">{hit.copyright}</p>
-            <a class={buttonVariants({ variant: "default" }) + " self-end ml-auto"} href={`/song/${hit.uuid}`}>
-              View
-              </a>
-          </CardFooter>
-        </Card>
-      ))
-    )}
+    {result.map((hit) => (
+      <Card>
+        <CardHeader className="flex flex-row">
+          <img
+            src={hit.img}
+            alt={hit.name}
+            class="m-2 mr-0 max-h-24"
+          />
+          <div class="p-3 flex flex-col">
+            <CardTitle>{hit.name}</CardTitle>
+            <CardDescription>{hit.artist}</CardDescription>
+          </div>
+        </CardHeader>
+        <CardFooter className="flex flex-row items-end content-between">
+          <p class="dark:text-darkText">{hit.copyright}</p>
+          <a 
+            class={buttonVariants({ variant: "default" }) + " self-end ml-auto"} 
+            href={`/song/${hit.uuid}`}
+          >
+            View
+          </a>
+        </CardFooter>
+      </Card>
+    ))}
   </div>
 </Page>
 
