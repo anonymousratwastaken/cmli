@@ -1,4 +1,4 @@
-import { singlestoreTable, singlestoreSchema, AnySingleStoreColumn, text } from "drizzle-orm/singlestore-core"
+import { singlestoreTable, text } from "drizzle-orm/singlestore-core"
 import { sql } from "drizzle-orm"
 
 export const cmli = singlestoreTable("cmli", {
